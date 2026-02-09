@@ -1,1 +1,60 @@
 # grafana-prometheus-loki
+
+Local monitoring stack with Grafana, Prometheus, and Loki using Docker Compose.
+
+## Services
+
+- Grafana: http://localhost:3000
+- Prometheus: http://localhost:9090
+- Loki: http://localhost:3100
+
+## Quick start
+
+1. Start the stack:
+
+```bash
+docker compose up -d
+```
+
+2. Open Grafana at http://localhost:3000.
+
+3. Log in with the default credentials (can be overridden by env vars):
+
+- user: admin
+- password: admin
+
+4. Stop the stack when done:
+
+```bash
+docker compose down
+```
+
+## Configuration
+
+- Prometheus config: [prometheus/prometheus.yml](prometheus/prometheus.yml)
+	- Scrapes Prometheus and Loki every 5 seconds.
+- Loki config: [loki/loki-config.yml](loki/loki-config.yml)
+	- Stores data on a local filesystem-backed volume.
+- Grafana provisioning: [grafana/provisioning](grafana/provisioning)
+	- Create datasources and dashboards on startup (optional).
+
+## Environment variables
+
+Grafana admin credentials can be set via:
+
+```bash
+GF_SECURITY_ADMIN_USER=admin
+GF_SECURITY_ADMIN_PASSWORD=admin
+```
+
+## Volumes
+
+- grafana-storage: Grafana data
+- prometheus-storage: Prometheus TSDB
+- loki-storage: Loki chunks and indexes
+
+## Notes
+
+- All services run on the shared `monitoring` Docker network.
+- Prometheus remote write receiver is enabled for testing.
+
