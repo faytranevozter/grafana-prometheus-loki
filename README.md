@@ -8,6 +8,11 @@ Local monitoring stack with Grafana, Prometheus, and Loki using Docker Compose.
 - Prometheus: http://localhost:9090
 - Loki: http://localhost:3100
 
+Prometheus is protected with basic auth:
+
+- user: admin
+- password: admin
+
 ## Quick start
 
 1. Start the stack:
@@ -33,6 +38,8 @@ docker compose down
 
 - Prometheus config: [prometheus/prometheus.yml](prometheus/prometheus.yml)
 	- Scrapes Prometheus and Loki every 5 seconds.
+- Prometheus web auth config: [prometheus/web.yml](prometheus/web.yml)
+	- Enables HTTP basic auth for Prometheus web endpoints.
 - Loki config: [loki/loki-config.yml](loki/loki-config.yml)
 	- Stores data on a local filesystem-backed volume.
 - Grafana provisioning: [grafana/provisioning](grafana/provisioning)
