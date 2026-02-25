@@ -60,6 +60,11 @@ GF_SECURITY_ADMIN_PASSWORD=admin
 - prometheus-storage: Prometheus TSDB
 - loki-storage: Loki chunks and indexes
 
+## Data retention
+
+- Prometheus retention: 30 days (`--storage.tsdb.retention.time=30d`)
+- Loki retention: 30 days (`limits_config.retention_period: 30d` with compactor retention enabled)
+
 ## Notes
 
 - All services run on the shared `monitoring` Docker network.
